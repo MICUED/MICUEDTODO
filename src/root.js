@@ -6,6 +6,7 @@ import { AppNavigator } from "./routerConfig.js"
 @connect(state => ({
     nav: state.nav
 }), dispatch => ({dispatch}))
+
 export default class AppWithNavigationState extends Component {
   handleBackPress = () => {
       const { dispatch, nav } = this.props

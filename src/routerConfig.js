@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { StackNavigator } from "react-navigation"
 import HomeScreen from "./container/Home.js"
 import Setting from "./container/Setting.js"
+import Login from './container/Login.js'
+
 const paramsToProps = (SomeComponent) => { 
     return class extends Component {
         static navigationOptions = SomeComponent.navigationOptions
@@ -14,8 +16,9 @@ const paramsToProps = (SomeComponent) => {
 }
 
 const routes = {
-    Setting: { screen: paramsToProps(Setting) },    
-    Home: { screen: paramsToProps(HomeScreen) }
+    Login: { screen: paramsToProps(Login) },
+    Home: { screen: paramsToProps(HomeScreen) },
+    Setting: { screen: paramsToProps(Setting) }    
 }
 const stackNavigatorConfig = {
     mode: "card",
