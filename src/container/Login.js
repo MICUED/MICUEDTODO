@@ -5,7 +5,8 @@ import {
     MKColor,
     mdl,
 } from 'react-native-material-kit';
-
+import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 const { widht, height } = Dimensions.get("window")
 
 const styles = StyleSheet.create({
@@ -22,6 +23,17 @@ const styles = StyleSheet.create({
     }
 })
 
+@connect(
+    state => ({
+        storage: state.global.storage
+    }),
+    dispatch => ({
+        navGo: (route) => dispatch(NavigationActions.navigate({
+            routeName: route
+        }))
+    })
+)
+
 export default class Login extends React.Component {
     constructor(props) {
         super()
@@ -29,6 +41,15 @@ export default class Login extends React.Component {
             name: "",
             pwd: ""
         }
+    }
+    componentDidMount() {
+        this.props.storage.load({
+            key: "name"
+        }).then(ret => {
+            Alert.alert(ret)
+        }).then(e=>{
+            cosnole.log(e)
+        })
     }
     login() {
         fetch("http://localhost:9000/login", {
@@ -44,7 +65,14 @@ export default class Login extends React.Component {
         })
             .then((response) => response.json())
             .then(ret => {
-                Alert.alert(ret.info)
+                if (ret.status === 1) {
+                    Alert.alert(ret.info)
+                    this.props.storage.save({
+                        key: "name",
+                        data:this.state.name
+                    })
+                    this.props.navGo("Home")
+                }
             })
     }
     render() {

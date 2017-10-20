@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#f6f6f6"
     },
     view: {
-        flexDirection: "row" 
+        flexDirection: "row"
     }
 })
 @connect(state => ({
@@ -28,40 +28,19 @@ const styles = StyleSheet.create({
 }))
 export default class HomeScreen extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = {
-            shake: new Animated.Value(0)
-        }    
+        super()
     }
     pressFunc() {
-        if(this.props.status == "show") {
-            this.props.hideFunc()
-            this.setState({shake: new Animated.Value(0)})
-        } else {
-            this.props.showFunc()
-            Animated.timing(
-                this.state.shake,
-                {
-                    toValue: 1,
-                    duration: 1000
-                }
-            ).start()      
-        }
+    }
+    logout() {
+
     }
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.view}>
-                    <Text style={{fontSize: 20}}>Hello </Text>
-                    {
-                        this.props.status == "show" ?  <Animated.Text style={{opacity: this.state.shake, fontSize: 20}}>MIC</Animated.Text> : <Text style={{fontSize: 20}}>World</Text>
-                    }
-                </View>
                 <Button
-                    onPress={() => {this.pressFunc()}}
-                    title={this.props.status}
-                    color="#841584"
-                />
+                    title="退出登录"
+                    onPress={() => { this.logout }} />
             </View>
         )
     }
