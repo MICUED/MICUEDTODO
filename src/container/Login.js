@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 const { widht, height } = Dimensions.get("window")
+import MyStorage from '../util/globalStorage.js'
 
 const styles = StyleSheet.create({
     container: {
@@ -24,9 +25,7 @@ const styles = StyleSheet.create({
 })
 
 @connect(
-    state => ({
-        storage: state.global.storage
-    }),
+    null,
     dispatch => ({
         navGo: (route) => dispatch(NavigationActions.navigate({
             routeName: route
@@ -43,37 +42,41 @@ export default class Login extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.storage.load({
-            key: "name"
-        }).then(ret => {
-            Alert.alert(ret)
-        }).then(e=>{
-            cosnole.log(e)
-        })
+        // this.props.storage.load({
+        //     key: "name"
+        // }).then(ret => {
+        //     Alert.alert(ret)
+        // }).then(e => {
+        //     cosnole.log(e)
+        // })
     }
     login() {
-        fetch("http://localhost:9000/login", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                pwd: this.state.pwd,
-            })
+        MyStorage._getStorage()
+        MyStorage._sava3("name", "yinshuxun")
+        MyStorage._load('name', (ret) => {
+            console.log('login',ret)
         })
-            .then((response) => response.json())
-            .then(ret => {
-                if (ret.status === 1) {
-                    Alert.alert(ret.info)
-                    this.props.storage.save({
-                        key: "name",
-                        data:this.state.name
-                    })
-                    this.props.navGo("Home")
-                }
-            })
+        this.props.navGo("Home")
+
+        // fetch("http://localhost:9000/login", {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         name: this.state.name,
+        //         pwd: this.state.pwd,
+        //     })
+        // })
+        //     .then((response) => response.json())
+        //     .then(ret => {
+        //         if (ret.status === 1) {
+        //             Alert.alert(ret.info)
+        //             // Storage._sava3("name", this.state.name)
+        //             this.props.navGo("Home")
+        //         }
+        //     })
     }
     render() {
         return (
