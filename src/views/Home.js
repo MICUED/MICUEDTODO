@@ -7,7 +7,8 @@ import {
     View
 } from "react-native"
 import { connect } from "react-redux"
-import { show, hide } from "../action/home.js"
+import { bus } from "../action/api.js"
+import LoginOut from './LoginOut.js'
 
 const styles = StyleSheet.create({
     container: {
@@ -21,26 +22,28 @@ const styles = StyleSheet.create({
     }
 })
 @connect(state => ({
-    status: state.home.status
+    tasks: state.api.tasks
 }), dispatch => ({
-    showFunc: () => dispatch(show()),
-    hideFunc: () => dispatch(hide())
+    getSub: () => dispatch(bus())
 }))
 export default class HomeScreen extends React.Component {
     constructor(props) {
         super()
     }
-    pressFunc() {
-    }
-    logout() {
-
+    componentWillMount() {
+        this.props.getSub();
     }
     render() {
         return (
             <View style={styles.container}>
-                <Button
-                    title="退出登录"
-                    onPress={() => { this.logout }} />
+                {
+                    this.props.tasks && this.props.tasks.data && this.props.tasks.data[0].data.map(({ author, name }, k) => {
+                        return (
+                            <Text key={k}>{author}:{name}</Text>
+                        )
+                    })
+                }
+                <LoginOut />
             </View>
         )
     }

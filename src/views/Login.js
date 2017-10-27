@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 const { widht, height } = Dimensions.get("window")
 import MyStorage from '../util/globalStorage.js'
+import { loginIn } from '../action/nav.js'
 
 const styles = StyleSheet.create({
     container: {
@@ -29,7 +30,8 @@ const styles = StyleSheet.create({
     dispatch => ({
         navGo: (route) => dispatch(NavigationActions.navigate({
             routeName: route
-        }))
+        })),
+        saveLoginState: (name) => dispatch(loginIn(name))
     })
 )
 
@@ -41,42 +43,31 @@ export default class Login extends React.Component {
             pwd: ""
         }
     }
-    componentDidMount() {
-        // this.props.storage.load({
-        //     key: "name"
-        // }).then(ret => {
-        //     Alert.alert(ret)
-        // }).then(e => {
-        //     cosnole.log(e)
-        // })
-    }
     login() {
-        MyStorage._getStorage()
-        MyStorage._sava3("name", "yinshuxun")
-        MyStorage._load('name', (ret) => {
-            console.log('login',ret)
+        const self = this
+        fetch("http://localhost:9000/login", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // name: this.state.name,
+                // pwd: this.state.pwd,
+                name: "yinshuxun",
+                pwd: "jiushiai"
+            })
         })
-        this.props.navGo("Home")
-
-        // fetch("http://localhost:9000/login", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         name: this.state.name,
-        //         pwd: this.state.pwd,
-        //     })
-        // })
-        //     .then((response) => response.json())
-        //     .then(ret => {
-        //         if (ret.status === 1) {
-        //             Alert.alert(ret.info)
-        //             // Storage._sava3("name", this.state.name)
-        //             this.props.navGo("Home")
-        //         }
-        //     })
+            .then((response) => response.json())
+            .then(ret => {
+                if (ret.status === 1) {
+                    self.props.saveLoginState("yinshuxun")
+                    MyStorage._getStorage()
+                    MyStorage._sava("name", "yinshuxun")
+                    self.props.navGo("Home")
+                }
+            })
+            .catch(e => { })
     }
     render() {
         return (

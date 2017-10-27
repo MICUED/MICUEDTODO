@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { StackNavigator } from "react-navigation"
-import HomeScreen from "./container/Home.js"
-import Setting from "./container/Setting.js"
-import Login from './container/Login.js'
+import HomeScreen from "./views/Home.js"
+import Setting from "./views/Setting.js"
+import Login from './views/Login.js'
 import LocalStorage from './util/globalStorage.js'
 
 const paramsToProps = (SomeComponent) => {
@@ -48,11 +48,13 @@ const routes = {
 
 const MyApp = StackNavigator(routes, stackNavigatorConfig)
 
-
 const defaultGetStateForAction = MyApp.router.getStateForAction;
 
 MyApp.router.getStateForAction = (action, state) => {
-    if (action.routeName != 'Login' && state && !state.hasLogin) {
+    // console.log("当前action:", action, "当前state", state)
+
+    if ((action.routeName && action.routeName != 'Login' || action.type === "@@redux/INIT") && state && !state.hasLogin || action.type === "LOGINOUT") {
+        // console.log("校验通过，跳转到Login")
         const routes = [
             ...state.routes,
             { key: 'id-' + Date.now(), routeName: 'Login' }
