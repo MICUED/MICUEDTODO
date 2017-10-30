@@ -9,6 +9,7 @@ import {
 import { connect } from "react-redux"
 import { bus } from "../action/api.js"
 import LoginOut from './LoginOut.js'
+import Header from '../components/Header.js'
 
 const styles = StyleSheet.create({
     container: {
@@ -36,6 +37,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Header/>
                 {
                     this.props.tasks && this.props.tasks.data && this.props.tasks.data[0].data.map(({ author, name }, k) => {
                         return (

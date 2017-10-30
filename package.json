@@ -3,8 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+    "configureMixPush": "node node_modules/react-native-mixpush/MixPushConfiguration.js",
 		"configureMixPush": "node node_modules/react-native-mixpush/MixPushConfiguration.js",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"micon": "./node_modules/.bin/generate-icon src/resources/fontsScss/_ob-icon.scss --componentName=Micon2 --fontFamily=micon2 > src/util/Micon2.js",
 		"test": "jest"
 	},
 	"dependencies": {
