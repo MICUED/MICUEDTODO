@@ -5,11 +5,11 @@
 	"scripts": {
 		"configureMixPush": "node node_modules/react-native-mixpush/MixPushConfiguration.js",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"micon": "./node_modules/.bin/generate-icon src/resources/fontsScss/_ob-icon.scss --componentName=Micon2 --fontFamily=micon2 > src/util/Micon2.js",
 		"test": "jest"
 	},
 	"dependencies": {
 		"axios": "^0.16.2",
-		"jcore-react-native": "^1.1.8-beta2",
 		"prop-types": "^15.5.10",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.3",
@@ -17,6 +17,8 @@
 		"react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
 		"react-native-fetch-blob": "0.10.4",
 		"react-native-mixpush": "^0.2.0",
+		"react-native-storage": "^0.2.2",
+		"react-native-vector-icons": "^4.4.2",
 		"react-navigation": "^1.0.0-beta.11",
 		"react-redux": "^5.0.5",
 		"redux": "^3.6.0",
