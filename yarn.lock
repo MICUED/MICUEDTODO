@@ -3440,11 +3440,17 @@ querystringify@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
 
+<<<<<<< HEAD
 raf@^3.1.0:
   version "3.4.0"
   resolved "https://registry.npmjs.org/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
     performance-now "^2.1.0"
+=======
+ramda@~0.21.0:
+  version "0.21.0"
+  resolved "https://registry.npmjs.org/ramda/-/ramda-0.21.0.tgz#a001abedb3ff61077d4ff1d577d44de77e8d0a35"
+>>>>>>> 80aeaabc6494fb604384d758f999854dcaeed7d7
 
 random-bytes@~1.0.0:
   version "1.0.0"
@@ -3559,11 +3565,19 @@ react-native-fetch-blob@0.10.8:
     base-64 "0.1.0"
     glob "7.0.6"
 
+<<<<<<< HEAD
 react-native-keyboard-aware-scroll-view@0.2.9:
   version "0.2.9"
   resolved "https://registry.npmjs.org/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.9.tgz#2a1ae49cfae90a9665b21763c1f8bd03ed5fb92c"
   dependencies:
     react-timer-mixin "^0.13.3"
+=======
+react-native-material-kit@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/react-native-material-kit/-/react-native-material-kit-0.4.1.tgz#bdfc4727e4146980e129ee5bbeb7565db6a918cc"
+  dependencies:
+    ramda "~0.21.0"
+>>>>>>> 80aeaabc6494fb604384d758f999854dcaeed7d7
 
 react-native-mixpush@^0.2.0:
   version "0.2.0"

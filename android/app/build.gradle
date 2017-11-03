@@ -133,7 +133,11 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
     compile project(':react-native-vector-icons')
+=======
+    compile project(':react-native-material-kit')
+>>>>>>> 80aeaabc6494fb604384d758f999854dcaeed7d7
     compile project(':react-native-mixpush')
     compile project(':react-native-fetch-blob')
     compile project(':react-native-camera')
