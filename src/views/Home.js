@@ -4,23 +4,16 @@ import {
     StyleSheet,
     Animated,
     Button,
+    Dimensions,
     View
 } from "react-native"
 import { connect } from "react-redux"
 import { bus } from "../action/api.js"
-import LoginOut from './LoginOut.js'
 import Header from '../components/Header.js'
+import Icon from 'react-native-vector-icons/FontAwesome';
+const { height, width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#f6f6f6"
-    },
-    view: {
-        flexDirection: "row"
-    }
 })
 @connect(state => ({
     tasks: state.api.tasks
@@ -36,16 +29,19 @@ export default class HomeScreen extends React.Component {
     }
     render() {
         return (
-            <View style={styles.container}>
-                <Header/>
+            <View style={{ flex: 1 }}>
+                <Header />
                 {
                     this.props.tasks && this.props.tasks.data && this.props.tasks.data[0].data.map(({ author, name }, k) => {
                         return (
-                            <Text key={k}>{author}:{name}</Text>
+                            <View key={k} style={{ flexDirection: "row", height: 30, alignItems: "center" }}>
+                                <Icon style={{ marginLeft: 10 }} name="bars" size={16} color="#222" />
+                                <Text style={{ marginLeft: 10, fontSize: 16, width: width - 50 }}>{name}</Text>
+                            </View>
                         )
                     })
                 }
-                <LoginOut />
+
             </View>
         )
     }

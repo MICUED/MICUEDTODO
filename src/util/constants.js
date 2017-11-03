@@ -1,7 +1,8 @@
-const url =  'http://localhost:9000'
+const url =  'http://192.168.31.217:9000'
 export default {
     url,
     followUrl:`${url}/follow`,
     login:`${url}/login`,
-    busUrl:`${url}/bus`
+    busUrl:`${url}/bus`,
+    statisticsUrl:`${url}/statistics`
 }

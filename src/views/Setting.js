@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
 
 export default class Setting extends React.Component {
     componentWillMount() {
-
         MixPush.getRegistrationID((registrationId) => {
             console.log(registrationId)
         })

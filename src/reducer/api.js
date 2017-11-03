@@ -1,5 +1,6 @@
 const initialState = {
-    tasks: []
+    tasks: [],
+    counts: []
 }
 
 export default (state = initialState, action) => {
@@ -8,6 +9,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 tasks: action.tasks
+            }
+        }
+        case 'COUNTS': {
+            return {
+                ...state,
+                counts: action.counts
             }
         }
         default: {

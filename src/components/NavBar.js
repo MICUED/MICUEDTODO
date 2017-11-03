@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     header: {
         paddingTop: globalConfig.statusBarHieght,
         backgroundColor: "#eee",
-        height: globalConfig.statusBarHieght + 60,
+        height: 60,
         flexDirection: "row",
         alignItems: "center"
     },
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     },
     spec: {
         flex: 1,
-
     }
 })
 
@@ -45,23 +44,21 @@ const styles = StyleSheet.create({
         }))
     }))
 
-export default class Header extends Component {
+export default class NavBar extends Component {
+    constructor(props){
+        super(props)
+    }
     render() {
         return (
             <View style={styles.header}>
-                <View style={[styles.spec, { flexDirection: "row" }]}>
-                    <Icon style={{ marginLeft: 15 }} name="pie-chart" size={24} color="#222" onPress={() => this.props.navGo('Dashboard')} />
-                    <Icon style={{ marginLeft: 10 }} name="cog" size={24} color="#222" />
+                <View style={[styles.spec]}>
+                    <Icon style={{ marginLeft: 15 }} name="mail-reply" size={24} color="#222" onPress={() => this.props.navGo('Home')} />
                 </View>
                 <View style={[styles.spec, { justifyContent: "flex-end", alignItems: "center" }]}>
-                    {/* <Image
-                        style={styles.icon}
-                        source={{ uri: 'http://www.haorooms.com/uploads/images/http3.jpg' }}
-                    /> */}
-                    <Text onPress={() => this.props.navGo("Count")}>{this.props.userName}</Text>
+                    <Text>{this.props.title}</Text>
                 </View>
                 <View style={styles.spec}>
-                    <LoginOut />
+                    {/* <LoginOut /> */}
                 </View>
             </View>)
     }

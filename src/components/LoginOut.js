@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loginOut } from '../action/nav.js'
 
 @connect(null, dispatch => ({
-    logOut:()=>{dispatch(loginOut())}
+    logOut: () => { dispatch(loginOut()) }
 }))
 
 export default class LoginOut extends Component {
@@ -14,7 +14,8 @@ export default class LoginOut extends Component {
     render() {
         return (
             <Button
-                title="退出登录1"
+                title="退出"
+                style={{ color: "#454545", fontSize: 16 }}
                 onPress={() => { this.logout() }} />
         )
     }

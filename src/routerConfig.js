@@ -4,6 +4,8 @@ import HomeScreen from "./views/Home.js"
 import Setting from "./views/Setting.js"
 import Login from './views/Login.js'
 import LocalStorage from './util/globalStorage.js'
+import Dashboard from "./views/Dashboard.js"
+import Count from "./views/Count.js"
 
 const paramsToProps = (SomeComponent) => {
     return class extends Component {
@@ -17,7 +19,7 @@ const paramsToProps = (SomeComponent) => {
 }
 
 const stackNavigatorConfig = {
-    initialRouteName: 'Home', // 默认显示界面  
+    initialRouteName: 'Dashboard', // 默认显示界面  
     mode: "card",
     headerMode: "none",
     transitionConfig: () => ({
@@ -43,7 +45,9 @@ const stackNavigatorConfig = {
 const routes = {
     Login: { screen: paramsToProps(Login) },
     Home: { screen: paramsToProps(HomeScreen) },
-    Setting: { screen: paramsToProps(Setting) }
+    Setting: { screen: paramsToProps(Setting) },
+    Dashboard: { screen: paramsToProps(Dashboard) },
+    Count: { screen: paramsToProps(Count) }
 }
 
 const MyApp = StackNavigator(routes, stackNavigatorConfig)
